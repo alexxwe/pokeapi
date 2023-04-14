@@ -1,30 +1,21 @@
 <script lang="ts">
-    import "../app.css"
-    import { onMount } from 'svelte'
+    import '../app.css'
+    import type { PokemonDto } from '../lib/types/pokemon.dto'
 
-    interface Pokemon {
-        name: string
+    /** @type {import('./$types').PageData} */
+    export let data: {
+        pokemons: Array<PokemonDto>
     }
 
-    let pokemonList: Pokemon[] = []
-
-    async function fetchPokemon(): Promise<void> {
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=50')
-        const data = await response.json()
-        pokemonList = data.results
-    }
-
-    onMount((): void => {
-        fetchPokemon()
-    })
 </script>
 
-    <div class="mx-auto max-w-7xl">
-        <h1 class="mb-4 text-3xl font-bold text-center">Pokemon List</h1>
-        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-auto">
-          {#each pokemonList as pokemon}
-                <li class="rounded-lg bg-gray-400 p-4 text-center">{pokemon.name}</li>
-                
-            {/each}
-        </ul>
-    </div>
+<div class="mx-auto max-w-7xl">
+    <h1 class="mb-4 text-center text-3xl font-bold">Pokemon List</h1>
+    <ul class="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {#each data.pokemons as pokemon}
+            <li class="rounded-lg bg-gray-400 p-4 text-center">{pokemon.forms[0].name}</li>
+            <h2 class="mb-2 text-lg font-bold">{pokemon.forms[0].name}</h2>
+            <img src={pokemon.sprites.front_default} alt={pokemon.forms[0].name} />
+        {/each}
+    </ul>
+</div>
