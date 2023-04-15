@@ -2,7 +2,7 @@
     nav
 </header>
 
-<main class="bg-zinc-700">
+<main class="bg-zinc-900 text-white">
     <slot />
 </main>
 
