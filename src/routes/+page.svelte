@@ -30,3 +30,16 @@
     </ul>
 </div>
 
+
+
+
+
+<!-- 
+*- list structure in 4 columns centered in a container, displaying each pokemon name. reponsive
+*- display picture, types, id, whatever data needed in each card. Style the color bg/border based on type
+- group generations being able to collapse them and hide them under banners (ask me before start)
+- lunch
+- Search system: allow search by pokemon name in a search bar on top`
+- POKEMON VIEW -> when you click on each card, go to a new page which displays that UNIQUE pokemon data in the whole page
+- POKEMON VIEW -> structure the data inside the new page, analyzing what should you show in it
+-finito -->
