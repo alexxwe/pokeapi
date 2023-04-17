@@ -59,6 +59,6 @@ export const borderColors: Record<string, string> = {
     ghost: 'hover:shadow-violet-900 shadow-lg border-2 border-violet-900',
     ice: 'hover:shadow-cyan-400 shadow-lg border-2 border-cyan-400',
     steel: 'hover:shadow-slate-500 shadow-lg border-2 border-slate-500',
-    dark: 'hover:shadow-gray-800 shadow-lg border-2 border-gray-800',
+    dark: 'hover:shadow-gray-700 shadow-lg border-2 border-gray-700',
 
 }
