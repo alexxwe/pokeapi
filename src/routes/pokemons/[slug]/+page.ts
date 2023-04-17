@@ -34,5 +34,22 @@ export async function load({ fetch, params }): Promise<{ pokemons: Array<Pokemon
         }
     }
 }
+export type pageData = {
+    pokemons: Array<PokemonDto>
+}
+
+export type PageLoad = {
+    fetch: typeof fetch
+    params: {
+        slug: string
+    }
+}
+
+//fetch('https://pokeapi.co/api/v2/pokemon/${pokemon}')
+
+
+
+
+
 
 
