@@ -1,10 +1,12 @@
-import type { PokemonDto } from '../lib/types/pokemon.dto.js'
-import type { PokemonListDto } from '../lib/types/pokemonList.dto.js'
+import type { PokemonDto } from '$lib/types/pokemon.dto.js'
+import type { PokemonListDto } from '$lib/types/pokemonList.dto.js'
+import { generations } from '$lib/utils/gens'
 
 /** @type {import('./$types').PageLoad} */
-export async function load({ fetch }): Promise<{ pokemons: Array<PokemonDto> }> {
+export async function load({ fetch, params }): Promise<{ pokemons: Array<PokemonDto> }> {
     try {
-        const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=450&limit=50')
+        const { offset, limit } = generations[Number(params.slug)-1];
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
         const data: PokemonListDto = await response.json()
 
         const pokemons: Array<PokemonDto> = []
