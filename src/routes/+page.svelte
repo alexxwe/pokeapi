@@ -1,2 +1,3 @@
-<div>Hola</div>
-<a href="/pokemons/1">pokemon1</a>
+<div>  ____________ </div>
+<a href="/pokemons/1">|·POKEDEX·|</a>
+<div> ¯¯¯¯¯¯¯¯¯¯¯¯ </div>
