@@ -12,7 +12,7 @@
 
     async function handleSearch() {
         if (search === '') return
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${search}`)
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${search.toLowerCase()}`)
         const searchData = await response.json()
         data.pokemons = [
             {
