@@ -7,7 +7,7 @@
     export let data: {
         pokemons: Array<PokemonDto>
     }
-
+    
 </script>
 
 <div class="mx-auto max-w-7xl">
@@ -16,6 +16,7 @@
         {#each generations as generation, index}
             <a href="/pokemons/{index + 1}" class="m-2 rounded border-2 border-gray-400 bg-gray-400 px-2 py-1 hover:bg-gray-400/20">{generation.name}</a>
         {/each}
+        <input />
     </div>
     <ul class="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         {#each data.pokemons as pokemon}
@@ -24,10 +25,14 @@
     </ul>
 </div>
 
+
+
+
+
 <!-- 
 *- list structure in 4 columns centered in a container, displaying each pokemon name. reponsive
 *- display picture, types, id, whatever data needed in each card. Style the color bg/border based on type
-- group generations being able to collapse them and hide them under banners (ask me before start)
+*- group generations being able to collapse them and hide them under banners (ask me before start)
 - lunch
 - Search system: allow search by pokemon name in a search bar on top`
 - POKEMON VIEW -> when you click on each card, go to a new page which displays that UNIQUE pokemon data in the whole page

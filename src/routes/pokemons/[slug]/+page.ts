@@ -5,26 +5,28 @@ import { generations } from '$lib/utils/gens'
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch, params }): Promise<{ pokemons: Array<PokemonDto> }> {
     try {
-        const { offset, limit } = generations[Number(params.slug) - 1]
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
+        const { offset, limit } = generations[Number(params.slug)-1];
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
         const data: PokemonListDto = await response.json()
 
-        const promises: Array<Promise<Response>> = []
+        const pokemons: Array<PokemonDto> = []
+        const promises = []
         for (const result of data.results) {
             promises.push(fetch(result.url))
+            const pokemonResponse = await fetch(result.url)
+            const pokemonData = await pokemonResponse.json()
+
+            pokemons.push({
+                forms: pokemonData.forms,
+                sprites: pokemonData.sprites,
+                id: pokemonData.id,
+                types: pokemonData.types,
+                moves: pokemonData.moves,
+            })
         }
 
-        const responses = await Promise.all(promises)
-        const datas: Array<PokemonDto> = await Promise.all(responses.map(res => res.json()))
-
         return {
-            pokemons: datas.map(data => ({
-                forms: data.forms,
-                sprites: data.sprites,
-                id: data.id,
-                types: data.types,
-                moves: data.moves,
-            })),
+            pokemons,
         }
     } catch (e: unknown) {
         return {
@@ -32,3 +34,5 @@ export async function load({ fetch, params }): Promise<{ pokemons: Array<Pokemon
         }
     }
 }
+
+
