@@ -1,13 +1,13 @@
-export const generationData = [
-  { name: 'gen1', start: 0, end: 151 },
-  { name: 'gen2', start: 152, end: 251 },
-  { name: 'gen3', start: 252, end: 386 },
-  { name: 'gen4', start: 387, end: 493 },
-  { name: 'gen5', start: 494, end: 649 },
-  { name: 'gen6', start: 650, end: 721 },
-  { name: 'gen7', start: 722, end: 809 },
-  { name: 'gen8', start: 810, end: 905 },
-  { name: 'gen9', start: 906, end: 1115 },
+export const generations = [
+  { name: 'Gen 1', offset: 0, limit: 151 },
+  { name: 'Gen 2', offset: 151, limit: 100 },
+  { name: 'Gen 3', offset: 251, limit: 135 },
+  { name: 'Gen 4', offset: 386, limit: 107 },
+  { name: 'Gen 5', offset: 493, limit: 156 },
+  { name: 'Gen 6', offset: 649, limit: 72 },
+  { name: 'Gen 7', offset: 721, limit: 88 },
+  { name: 'Gen 8', offset: 809, limit: 96 },
+  { name: 'Gen 9', offset: 905, limit: 110 },
 ]
     
     
