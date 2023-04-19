@@ -6,42 +6,37 @@
     export let data: {
         pokemon: PokemonDto
     }
-
+    //
 </script>
 
-{#if data.pokemon}
-    <div class="mx-auto h-full max-w-full">
-        {data.pokemon.id}
-    </div>
-    <div
-        class="flex flex-col items-center rounded-lg {bgColors[data.pokemon.types[0].type.name]} {borderColors[
-            data.pokemon.types[0].type.name
-        ]} animate__animated animate__fadeInDown p-4 text-center"
-    >
-        <h2 class="mb-2 text-lg font-bold">{data.pokemon.name} #{data.pokemon.id}</h2>
-        {#each data.pokemon.types as types}
-            <span class="mb-0.5 rounded-full border px-2 shadow {typesColors[types.type.name]}">{types.type.name}</span>
-        {/each}
-        <img
-            src={data.pokemon.sprites.versions['generation-v']['black-white'].animated.front_default ?? data.pokemon.sprites.front_default}
-            alt={data.pokemon.name}
-        />
-        <ul class="grid grid-cols-2 gap-2 text-center">
-            {#each data.pokemon.moves.slice(0, 4) as moves}
-                <li class="rounded-lg bg-zinc-300 px-2 py-2 text-black">
-                    {data.pokemon.moves[Math.floor(Math.random() * data.pokemon.moves.length)].move.name}
-                </li>
+<div class="my-8 text-center">
+    <a href="/generations/1" class=" m-2 rounded border-2 border-red-600 bg-red-600 p-2 shadow-lg hover:shadow-red-600">|·POKEDEX·|</a>
+</div>
+<div class="mx-auto w-80">
+    {#if data.pokemon}
+        <div class="mx-auto h-full max-w-full" />
+        <div
+            class="flex flex-col items-center rounded-lg {bgColors[data.pokemon.types[0].type.name]} {borderColors[
+                data.pokemon.types[0].type.name
+            ]} animate__animated animate__fadeInDown p-4 text-center"
+        >
+            <h2 class="mb-2 text-lg font-bold">{data.pokemon.name} #{data.pokemon.id}</h2>
+            {#each data.pokemon.types as types}
+                <span class="mb-0.5 rounded-full border px-2 shadow {typesColors[types.type.name]}">{types.type.name.toUpperCase()}</span>
             {/each}
-        </ul>
-    </div>
-{:else}
-    <div>Pokemon not found...</div>
-{/if}
-
-
-
-
-
+            <img src={data.pokemon.sprites.other['official-artwork'].front_default} alt={data.pokemon.name} />
+            <ul class="grid grid-cols-2 gap-2 text-center">
+                {#each data.pokemon.moves.slice(0, 4) as moves}
+                    <li class="rounded-lg bg-zinc-300 px-2 py-2 text-black">
+                        {data.pokemon.moves[Math.floor(Math.random() * data.pokemon.moves.length)].move.name}
+                    </li>
+                {/each}
+            </ul>
+        </div>
+    {:else}
+        <div>Pokemon not found...</div>
+    {/if}
+</div>
 
 <!-- 
 *- list structure in 4 columns centered in a container, displaying each pokemon name. reponsive
