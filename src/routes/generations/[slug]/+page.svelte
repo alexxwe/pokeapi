@@ -1,5 +1,6 @@
 <script lang="ts">
     import Card from '$lib/components/Card.svelte'
+    import { pokemonsContext, type CachedPokemonDto } from '$lib/context/pokemons'
     import type { PokemonDto } from '$lib/types/pokemon.dto'
     import { generations } from '$lib/utils/gens'
 
@@ -8,42 +9,14 @@
         pokemons: Array<PokemonDto>
     }
 
-    let search = ''
-
-    async function handleSearch() {
-        if (search === '') return
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${search.toLowerCase()}`)
-        const searchData = await response.json()
-        data.pokemons = [
-            {
-                forms: searchData.forms,
-                sprites: searchData.sprites,
-                id: searchData.id,
-                types: searchData.types,
-                moves: searchData.moves,
-            },
-        ]
-    }
 </script>
 
 <div class="mx-auto max-w-7xl">
     <h1 class="mb-4 text-center text-3xl font-bold">Pokemon List</h1>
     <div class="mb-4 flex justify-center">
         {#each generations as generation, index}
-            <a href="/pokemons/{index + 1}" class="m-2 rounded border-2 border-gray-400 bg-gray-400 px-2 py-1 hover:bg-gray-400/20">{generation.name}</a>
+            <a href="/generations/{index + 1}" class="m-2 rounded border-2 border-gray-400 bg-gray-400 px-2 py-1 hover:bg-gray-400/20">{generation.name}</a>
         {/each}
-        <input
-            type="text"
-            placeholder=" Pokemon Search"
-            class="rounded border px-1 text-black"
-            bind:value={search}
-            on:keydown={event => {
-                if (event.key === 'Enter') {
-                    handleSearch()
-                }
-            }}
-        />
-        <!-- <button on:click={handleSearch}>Search</button> -->
     </div>
     <ul class="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
         {#each data.pokemons as pokemon}

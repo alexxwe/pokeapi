@@ -1,3 +1,3 @@
 <div>  ____________ </div>
-<a href="/pokemons/1">|·POKEDEX·|</a>
+<a href="/generations/1">|·POKEDEX·|</a>
 <div> ¯¯¯¯¯¯¯¯¯¯¯¯ </div>

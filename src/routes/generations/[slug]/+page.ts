@@ -17,7 +17,7 @@ export async function load({ fetch, params }): Promise<{ pokemons: Array<Pokemon
             const pokemonData = await pokemonResponse.json()
 
             pokemons.push({
-                forms: pokemonData.forms,
+                name: result.name,
                 sprites: pokemonData.sprites,
                 id: pokemonData.id,
                 types: pokemonData.types,
@@ -46,7 +46,6 @@ export type PageLoad = {
 }
 
 //fetch('https://pokeapi.co/api/v2/pokemon/${pokemon}')
-
 
 
 
