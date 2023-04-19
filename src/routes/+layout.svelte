@@ -1,15 +1,12 @@
 <script lang="ts">
+    import Header from '$lib/components/Header.svelte'
     import '../app.css'
 </script>
 
-<header class="bg-zinc-700">
-    .
-</header>
+<Header />
 
-<main class="bg-zinc-900 text-white">
+<main>
     <slot />
 </main>
 
-<footer class="bg-zinc-700">
-    .
-</footer>
+<footer class="bg-zinc-700">.</footer>
