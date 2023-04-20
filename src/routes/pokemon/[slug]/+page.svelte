@@ -6,6 +6,12 @@
     export let data: {
         pokemon: PokemonDto
     }
+    const colors:{ [key: number]: string} ={
+        0: "",
+        1: "border-yellow-500",
+        2: "border-orange-600",
+        3: "border-red-600",
+    }
     //
 </script>
 
@@ -46,10 +52,10 @@
                     <span class="{stats.effort > 0 ? 'text-red-400' : 'text-white' }">{stats.stat.name.toUpperCase()} </span>
                     <span>{stats.base_stat}</span>
                 </div>
-                <div class="h-4 rounded-full bg-zinc-300 ">
+                <div class="h-4 rounded-full bg-zinc-400 ">
                     <div
-                        class="h-4 rounded-full bg-green-400 {stats.effort > 0 ? 'border-orange-600 border-2':''}"
-                        style="width: {Math.round((stats.base_stat / Math.max(...data.pokemon.stats.map(stat => stat.base_stat))) * 100)}%"
+                    class={`h-4 rounded-full bg-green-400 ${stats.effort > 0 ? `${colors[stats.effort]} border-2` : ''}`}
+                    style="width: {Math.round((stats.base_stat / Math.max(...data.pokemon.stats.map(stat => stat.base_stat))) * 100)}%"
                     />
                 </div>
             </div>

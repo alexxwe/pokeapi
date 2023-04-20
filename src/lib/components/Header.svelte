@@ -9,7 +9,7 @@
     let input = ''
 </script>
 
-<header class="bg-zinc-700">
+<header class="bg-zinc-700 p-2">
     <input type="text" placeholder=" Pokemon Search" class="rounded border px-1 text-black" bind:value={input} />
     {#if input.length > 0}
     {#each _pokemons.filter(x => x.name.includes(input)).slice(0, 12) as pokemon}
