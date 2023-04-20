@@ -11,6 +11,7 @@
 
 <header class="bg-zinc-700">
     <input type="text" placeholder=" Pokemon Search" class="rounded border px-1 text-black" bind:value={input} />
+    {#if input.length > 0}
     {#each _pokemons.filter(x => x.name.includes(input)).slice(0, 12) as pokemon}
         <div>
             <a href="/pokemon/{pokemon.url.split('pokemon')[1].replaceAll('/', '')}">
@@ -18,5 +19,6 @@
             </a>
         </div>
     {/each}
+    {/if}
 </header>
 <!-- <button on:click={handleSearch}>Search</button> -->
