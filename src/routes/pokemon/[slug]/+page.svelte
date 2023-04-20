@@ -10,7 +10,7 @@
 </script>
 
 <div class="my-8 text-center">
-    <a href="/generations/1" class=" m-2 rounded border-2 border-red-600 bg-red-600 p-2 shadow-lg hover:shadow-red-600">|·POKEDEX·|</a>
+    <a href="/generations/1" class=" m-2 rounded border-2 border-red-600 bg-red-600 p-2 shadow-lg hover:shadow-red-600">POKEDEX</a>
 </div>
 <div class="mx-auto w-80">
     {#if data.pokemon}
@@ -37,6 +37,27 @@
         <div>Pokemon not found...</div>
     {/if}
 </div>
+
+<div class="mx-auto max-w-md">
+    <div class="flex flex-col items-center">
+        {#each data.pokemon.stats as stats}
+            <div class="mb-2 w-full">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="{stats.effort > 0 ? 'text-red-400' : 'text-white' }">{stats.stat.name.toUpperCase()} </span>
+                    <span>{stats.base_stat}</span>
+                </div>
+                <div class="h-4 rounded-full bg-zinc-300 ">
+                    <div
+                        class="h-4 rounded-full bg-green-400 {stats.effort > 0 ? 'border-orange-600 border-2':''}"
+                        style="width: {Math.round((stats.base_stat / Math.max(...data.pokemon.stats.map(stat => stat.base_stat))) * 100)}%"
+                    />
+                </div>
+            </div>
+        {/each}
+    </div>
+</div>
+
+
 
 <!-- 
 *- list structure in 4 columns centered in a container, displaying each pokemon name. reponsive
