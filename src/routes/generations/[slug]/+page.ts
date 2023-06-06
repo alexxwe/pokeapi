@@ -22,6 +22,7 @@ export async function load({ fetch, params }): Promise<{ pokemons: Array<Pokemon
                 id: pokemonData.id,
                 types: pokemonData.types,
                 moves: pokemonData.moves,
+                stats: pokemonData.stats,
             })
         }
 
