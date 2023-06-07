@@ -3,25 +3,41 @@
     import { pokemonsContext, type CachedPokemonDto } from '$lib/context/pokemons'
     import type { PokemonDto } from '$lib/types/pokemon.dto'
     import { generations } from '$lib/utils/gens'
+    import { onMount } from 'svelte'
 
     /** @type {import('./$types').PageData} */
     export let data: {
         pokemons: Array<PokemonDto>
     }
 
+    let isLoading = false
+
+    function handleClick() {
+        isLoading = true
+        setTimeout(() => {
+            isLoading = false
+        },3000 )
+    }
+    
 </script>
 
 <div class="mx-auto max-w-7xl">
     <h1 class="mb-4 text-center text-3xl font-bold">Pokemon List</h1>
     <div class="mb-4 flex justify-center">
         {#each generations as generation, index}
-            <a href="/generations/{index + 1}" class="m-2 rounded border-2 border-gray-400 bg-gray-400 px-2 py-1 hover:bg-gray-400/20">{generation.name}</a>
+            <a href="/generations/{index + 1}" class="m-2 rounded border-2 border-gray-400 bg-gray-400 px-2 py-1 hover:bg-gray-400/20" on:click={handleClick}
+                >{generation.name}</a
+            >
         {/each}
     </div>
     <ul class="mx-auto grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
+        {#if isLoading}
+        <div>Loading...</div>
+    {:else}
         {#each data.pokemons as pokemon}
             <Card {pokemon} />
         {/each}
+        {/if}
     </ul>
 </div>
 
