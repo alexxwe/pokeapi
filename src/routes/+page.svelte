@@ -1,21 +1,35 @@
 <script lang="ts">
-    let showText = false;
-  
+    let showText = false
+    let dots = '...'
+
     function handleClick() {
-      showText = true;
+        showText = true
+        setInterval(function () {
+            if (dots.length > 3) {
+                dots = ''
+            }
+            var textOverlay = document.getElementById('text-overlay')
+            if (textOverlay) {
+                textOverlay.innerText = dots
+            }
+            dots += '.'
+        }, 500)
     }
-  </script>
-  
-  <div class="container">
+</script>
+
+<div class="container">
     <div class="flex h-screen">
-      <div class="relative h-64 w-64">
-        <a href="/generations/1" class="poke-ball blinking absolute top-2/3 left-2/3 h-2/3 w-2/3 rounded-full bg-white" on:click={handleClick}> </a>
-        {#if showText}
-          <div class="text-overlay absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl font-bold">...</div>
-        {/if}
-      </div>
+        <div class="relative h-64 w-64">
+            <!-- svelte-ignore a11y-missing-content -->
+            <a href="/generations/1" class="poke-ball blinking absolute top-2/3 left-2/3 h-2/3 w-2/3 rounded-full bg-white" on:click={handleClick} />
+            {#if showText}
+                <div id="text-overlay" class="text-overlay absolute top-1/2 left-1/2 text-2xl font-bold text-white">
+                    {dots}
+                </div>
+            {/if}
+        </div>
     </div>
-  </div>
+</div>
 
 <style>
     .poke-ball {
