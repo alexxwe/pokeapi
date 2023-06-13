@@ -5,8 +5,8 @@ import { generations } from '$lib/utils/gens'
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch, params }): Promise<{ pokemons: Array<PokemonDto> }> {
     try {
-        const { offset, limit } = generations[Number(params.slug)-1];
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`);
+        const { offset, limit } = generations[Number(params.slug) - 1]
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
         const data: PokemonListDto = await response.json()
 
         const pokemons: Array<PokemonDto> = []
@@ -47,9 +47,3 @@ export type PageLoad = {
 }
 
 //fetch('https://pokeapi.co/api/v2/pokemon/${pokemon}')
-
-
-
-
-
-

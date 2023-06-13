@@ -17,7 +17,6 @@ export const bgColors: Record<string, string> = {
     dragon: 'bg-indigo-700/60',
     steel: 'bg-slate-500/60',
     dark: 'bg-gray-700/30',
-
 }
 
 export const typesColors: Record<string, string> = {
@@ -39,7 +38,6 @@ export const typesColors: Record<string, string> = {
     dragon: 'bg-indigo-700',
     steel: 'bg-slate-400',
     dark: 'bg-gray-800',
-
 }
 
 export const borderColors: Record<string, string> = {
@@ -60,5 +58,4 @@ export const borderColors: Record<string, string> = {
     ice: 'hover:shadow-cyan-400 shadow-lg border-2 border-cyan-400',
     steel: 'hover:shadow-slate-500 shadow-lg border-2 border-slate-500',
     dark: 'hover:shadow-gray-700 shadow-lg border-2 border-gray-700',
-
 }
