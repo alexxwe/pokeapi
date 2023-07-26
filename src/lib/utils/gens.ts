@@ -8,8 +8,9 @@ export const generations = [
     { name: 'Gen 7', offset: 721, limit: 88 },
     { name: 'Gen 8', offset: 809, limit: 96 },
     { name: 'Gen 9', offset: 905, limit: 105 },
-    { name: 'Xpecials', offset: 1010, limit: 300 },
+    { name: 'Xpecials', offset: 1010, limit: 263 },
 ]
+//last 10271
 
 // gen1: "0-151" (151)
 // gen2: "152-251" (100)
