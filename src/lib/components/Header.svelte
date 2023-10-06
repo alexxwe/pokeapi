@@ -10,15 +10,19 @@
 </script>
 
 <header class="bg-zinc-700 p-2">
-    <input type="text" placeholder=" Pokemon Search" class="rounded border px-1 text-black" bind:value={input} />
+    <div class="flex items-center">
+        <a href="../" rel="icon"><i class="bi bi-record-circle mr-4 text-4xl" /></a>
+        <input type="text" placeholder=" Pokemon Search" class="rounded border px-1 text-black" bind:value={input} />
+    </div>
     {#if input.length > 0}
-    {#each _pokemons.filter(x => x.name.includes(input)).slice(0, 12) as pokemon}
-        <div>
-            <a href="/pokemon/{pokemon.url.split('pokemon')[1].replaceAll('/', '')}">
-                #{pokemon.url.split('pokemon')[1].replaceAll('/', '')} - {pokemon.name}
-            </a>
-        </div>
-    {/each}
+        {#each _pokemons.filter(x => x.name.includes(input)).slice(0, 12) as pokemon}
+            <div>
+                <a href="/pokemon/{pokemon.url.split('pokemon')[1].replaceAll('/', '')}">
+                    #{pokemon.url.split('pokemon')[1].replaceAll('/', '')} - {pokemon.name}
+                </a>
+            </div>
+        {/each}
     {/if}
+    <!-- last 10271 -->
 </header>
 <!-- <button on:click={handleSearch}>Search</button> -->

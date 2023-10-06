@@ -102,7 +102,6 @@
         <div>Pokemon not found...</div>
     {/if}
 </div>
-
 <div class="mx-auto max-w-md">
     <div class="flex flex-row items-center justify-center">
         <button
