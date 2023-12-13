@@ -2,29 +2,39 @@ import type { PokemonDto } from '$lib/types/pokemon.dto.js'
 import type { PokemonListDto } from '$lib/types/pokemonList.dto.js'
 import { generations } from '$lib/utils/gens'
 
+const ten = 10 
+
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch, params }): Promise<{ pokemons: Array<PokemonDto> }> {
     try {
         const { offset, limit } = generations[Number(params.slug) - 1]
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`)
-        const data: PokemonListDto = await response.json()
-
         const pokemons: Array<PokemonDto> = []
-        const promises = []
-        for (const result of data.results) {
-            promises.push(fetch(result.url))
-            const pokemonResponse = await fetch(result.url)
-            const pokemonData = await pokemonResponse.json()
+        const numberOfGroups = Math.ceil(limit / ten)
 
-            pokemons.push({
-                name: result.name,
-                sprites: pokemonData.sprites,
-                id: pokemonData.id,
-                types: pokemonData.types,
-                moves: pokemonData.moves,
-                stats: pokemonData.stats,
-            })
-        }
+        const groupPromises = Array.from({ length: numberOfGroups }, (_, i) => {
+            const groupOffset = offset + i * ten
+            const groupLimit = Math.min(ten, limit - i * ten)
+            return fetch(`https://pokeapi.co/api/v2/pokemon?offset=${groupOffset}&limit=${groupLimit}`).then(response => response.json())
+        })
+
+        const groupResult: PokemonListDto[] = await Promise.all(groupPromises)
+
+        const results = groupResult.flatMap(result => result.results)
+        const pokemonPromises = results.map(result => fetch(result.url).then(response => response.json()))
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const pokemonData: Array<any> = await Promise.all(pokemonPromises)
+
+        pokemons.push(
+            ...pokemonData.map((data, index) => ({
+                name: results[index].name,
+                sprites: data.sprites,
+                id: data.id,
+                types: data.types,
+                moves: data.moves,
+                stats: data.stats,
+            })),
+        )
 
         return {
             pokemons,
