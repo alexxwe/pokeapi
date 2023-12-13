@@ -65,11 +65,12 @@
         }, 10)
     }
 </script>
+
 <div>
     {#if showText}
-    <div id="text-overlay" class="text-overlay absolute left-4 m-8 text-2xl font-bold text-white">
-        {dots}
-    </div>
+        <div id="text-overlay" class="text-overlay absolute left-4 m-8 text-2xl font-bold text-white">
+            {dots}
+        </div>
     {/if}
 </div>
 <div class="my-8 text-center">
@@ -83,7 +84,7 @@
                 data.pokemon.types[0].type.name
             ]} {animation} p-4 text-center"
         >
-            <h2 class="mb-2 text-lg font-bold">{data.pokemon.name} #{data.pokemon.id}</h2>
+            <h2 class="mb-2 text-lg font-bold">{data.pokemon.name.charAt(0).toUpperCase() + data.pokemon.name.slice(1)} #{data.pokemon.id}</h2>
             {#each data.pokemon.types as types}
                 <span class="mb-0.5 rounded-full border px-2 shadow {typesColors[types.type.name]}">
                     {types.type.name.toUpperCase()}
@@ -105,12 +106,14 @@
 <div class="mx-auto max-w-md">
     <div class="flex flex-row items-center justify-center">
         <button
+            aria-label="Previous"
             on:click={() => handleArrowClick(false)}
             class="m-4 rounded border-2 border-indigo-600 bg-indigo-600 p-2 px-10 shadow-lg hover:bg-indigo-800 hover:shadow-indigo-600"
         >
             <i class="bi bi-arrow-left" />
         </button>
         <button
+            aria-label="Next"
             on:click={() => handleArrowClick(true)}
             class="m-4 rounded border-2 border-indigo-600 bg-indigo-600 p-2 px-10 shadow-lg hover:bg-indigo-800 hover:shadow-indigo-600"
         >

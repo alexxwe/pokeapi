@@ -24,7 +24,7 @@
     <h1 class="mb-4 text-center text-3xl font-bold">Pokemon List</h1>
     <div class="mb-4 flex justify-center">
         {#each generations as generation, index}
-            <a href="/generations/{index + 1}" class="m-2 rounded border-2 border-gray-400 bg-gray-400 px-2 py-1 hover:bg-gray-400/20" on:click={handleClick}
+            <a href="/generations/{index + 1}" class=" text-black m-2 rounded border-2 border-gray-400 bg-gray-400 px-2 py-1 hover:bg-gray-400/60" on:click={handleClick}
                 >{generation.name}</a
             >
         {/each}

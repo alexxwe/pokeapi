@@ -21,7 +21,7 @@
     <div class="flex h-screen">
         <div class="relative h-64 w-64">
             <!-- svelte-ignore a11y-missing-content -->
-            <a href="/generations/1" class="poke-ball blinking absolute top-2/3 left-2/3 h-2/3 w-2/3 rounded-full bg-white" on:click={handleClick} />
+            <a href="/generations/1" aria-label="Pokemon" class="poke-ball blinking absolute top-2/3 left-2/3 h-2/3 w-2/3 rounded-full bg-white" on:click={handleClick} />
             {#if showText}
                 <div id="text-overlay" class="text-overlay absolute top-1/2 left-1/2 text-2xl font-bold text-white">
                     {dots}
